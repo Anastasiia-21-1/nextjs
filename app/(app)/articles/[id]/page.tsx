@@ -2,11 +2,13 @@ import {api} from "@/utils";
 import {Suspense} from "react";
 import Loading from "@/app/(app)/articles/loading";
 
-export default async function Page() {
-    const id = 2
+export function generateStaticParams() {
+    return ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+}
 
-    const post = await api(`/posts/${id}`).then(({data}) => data)
-    const comments: any[] = await api(`/posts/${id}/comments`).then(({data}) => data)
+export default async function Page({params}: {params: {id: number}}) {
+    const post = await api(`/posts/${params.id}`).then(({data}) => data)
+    const comments: any[] = await api(`/posts/${params.id}/comments`).then(({data}) => data)
 
     return (
         <div>
