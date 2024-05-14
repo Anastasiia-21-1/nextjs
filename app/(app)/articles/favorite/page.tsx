@@ -14,7 +14,11 @@ export default async function Page() {
             Articles / Favorite page
             <Suspense fallback={<Loading/>}>
                 <FavoriteArticle post={post1}/>
+            </Suspense>
+            <Suspense fallback={<Loading/>}>
                 <FavoriteArticle post={post2}/>
+            </Suspense>
+            <Suspense fallback={<Loading/>}>
                 <FavoriteArticle post={post3}/>
             </Suspense>
         </div>
