@@ -1,7 +1,8 @@
-'use client'
-import {useEffect} from "react";
+import {getUserSession} from "@/prisma/auth";
 
-export default function Page() {
+export default async function Page() {
+
+    const session = await getUserSession()
 
     // const users = await getUsers()
     // console.log(users)
@@ -27,6 +28,7 @@ export default function Page() {
     return (
         <div>
             Root page
+            {JSON.stringify(session)}
         </div>
     );
 }
