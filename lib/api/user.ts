@@ -5,6 +5,7 @@ export const getUsers = async () => {
 }
 
 export const getUserById = async (id: number) => {
+    console.log({id})
     return prisma.user.findFirst({
         where: {
             id
@@ -21,6 +22,15 @@ export const createUser = async (user: any) => {
         }
     })
 }
+
+export const updateUser = async (id: number, data: any) => {
+    return prisma.user.update({
+        where: {
+            id,
+        },
+        data,
+    });
+};
 
 export const deleteUser = async (id: number) => {
     return prisma.user.delete({
