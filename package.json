@@ -3,22 +3,36 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "env-cmd -f .env.dev next dev",
+    "prod": "env-cmd -f .env.prod next dev",
     "build": "next build",
     "start": "next start",
+    "start:prod": "env-cmd -f .env.prod next start",
+    "db:generate": "env-cmd -f .env.dev prisma generate dev",
+    "db:seed": "env-cmd -f .env.dev prisma db seed",
+    "db:seed:prod": "env-cmd -f .env.prod prisma db seed",
+    "db:migrate": "env-cmd -f .env.dev prisma migrate dev",
+    "db:migrate:prod": "env-cmd -f .env.prod prisma migrate dev",
+    "db:studio": "env-cmd -f .env.dev prisma studio",
     "lint": "next lint"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@prisma/client": "^5.14.0",
     "axios": "^1.6.8",
     "framer-motion": "^11.2.0",
     "next": "14.2.3",
+    "prisma": "^5.14.0",
     "react": "^18",
     "react-dom": "^18",
-    "sass": "^1.77.1"
+    "sass": "^1.77.1",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@types/node": "^20",
