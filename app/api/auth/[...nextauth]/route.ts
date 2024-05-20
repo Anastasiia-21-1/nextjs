@@ -1,5 +1,6 @@
 import NextAuth, {NextAuthOptions} from "next-auth";
 import GoogleProvider from "next-auth/providers/google"
+import GithubProvider from "next-auth/providers/github"
 import {prisma} from "@/lib/prisma";
 import {session} from "@/prisma/auth";
 
@@ -12,6 +13,10 @@ const authOption: NextAuthOptions = {
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
         }),
+        GithubProvider({
+            clientId: process.env.GITHUB_CLIENT_ID!,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+        })
     ],
     callbacks: {
         async signIn({ account, profile }) {
